@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>クラス構成図 - プロジェクトアーカイブ</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <button class="hamburger" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+
+  <div class="page-wrapper">
+    <aside class="sidebar" data-nav-level="design"></aside>
+
+    <main class="main-content">
+      <header class="doc-header">
+        <div class="doc-category">DESIGN DOCUMENT</div>
+        <h1 class="doc-title">クラス構成図</h1>
+        <div class="doc-meta">
+          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 作成日：2026-03-24</span>
+          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者：ツツイ</span>
+          <span><span class="material-symbols-outlined icon-sm">push_pin</span> Ver 1.0</span>
+        </div>
+      </header>
+
+      <div class="doc-body">
+
+        <div class="toc">
+          <div class="toc-title">目次</div>
+          <ol class="toc-list">
+            <li><a href="#sec1">パッケージ構成</a></li>
+            <li><a href="#sec2">Entity（エンティティ）</a></li>
+            <li><a href="#sec3">Repository（リポジトリ）</a></li>
+            <li><a href="#sec4">Service（サービス）</a></li>
+            <li><a href="#sec5">Controller（コントローラー）</a></li>
+            <li><a href="#sec6">クラス間の依存関係</a></li>
+          </ol>
+        </div>
+
+        <section class="section" id="sec1">
+          <h2 class="section-title"><span class="section-icon">1</span> パッケージ構成</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">ディレクトリ構造 <span class="required">必須</span></div>
+            <div class="fill-hint">src/main/java以下のパッケージ構造</div>
+            <div class="fill-content">
+              <div class="ascii-diagram">
+                <pre>
+src/main/java/
+└── com.example.inori/
+    ├── InoriApplication.java
+    ├── controller/
+    │   ├── ReservationController.java     # 予約管理
+    │   └── InquiryController.java         # お問い合わせ管理
+    ├── service/
+    │   ├── ReservationService.java        # 予約業務ロジック
+    │   └── InquiryService.java            # お問い合わせ業務ロジック
+    ├── repository/
+    │   ├── ReservationRepository.java     # 予約DBアクセス
+    │   └── InquiryRepository.java         # お問い合わせDBアクセス
+    ├── entity/
+    │   ├── Reservation.java               # 予約エンティティ
+    │   └── Inquiry.java                   # お問い合わせエンティティ
+    └── form/
+        ├── ReservationForm.java           # 予約入力フォーム
+        └── InquiryForm.java               # お問い合わせ入力フォーム
+  </pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="fill-block">
+            <div class="fill-label">パッケージの役割 <span class="required">必須</span></div>
+            <div class="fill-hint">各パッケージの責務を説明</div>
+            <div class="fill-content">
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>パッケージ</th>
+                    <th>役割</th>
+                    <th>使用するアノテーション</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>controller</td>
+                    <td>予約管理画面・お問い合わせ管理画面のリクエスト受付と画面制御を行う</td>
+                    <td>@Controller, @GetMapping, @PostMapping, @RequestMapping</td>
+                  </tr>
+                  <tr>
+                    <td>service</td>
+                    <td>予約情報やお問い合わせ情報の登録・更新・削除などの業務ロジックを実装する</td>
+                    <td>@Service, @Transactional</td>
+                  </tr>
+                  <tr>
+                    <td>repository</td>
+                    <td>予約情報・お問い合わせ情報のデータベースアクセスを担当する</td>
+                    <td>@Repository</td>
+                  </tr>
+                  <tr>
+                    <td>entity</td>
+                    <td>予約情報・お問い合わせ情報のデータモデルを定義する</td>
+                    <td>@Data, @NoArgsConstructor, @AllArgsConstructor</td>
+                  </tr>
+                  <tr>
+                    <td>form</td>
+                    <td>画面から送信された入力値を受け取り、バリデーションを行う</td>
+                    <td>@Data, @NotBlank, @Email</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="sec2">
+          <h2 class="section-title"><span class="section-icon">2</span> Entity（エンティティ）</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">Reservation.java <span class="required">必須</span></div>
+            <div class="fill-hint">予約エンティティのクラス図</div>
+            <div class="fill-content">
+              <div class="ascii-diagram">
+                <pre>
+┌────────────────────────────────────────┐
+│              《Entity》                 │
+│             Reservation                │
+├────────────────────────────────────────┤
+│ - id: Long                             │
+│ - name: String                         │
+│ - email: String                        │
+│ - phone: String                        │
+│ - reservationDate: LocalDate           │
+│ - reservationTime: String              │
+│ - peopleCount: Integer                 │
+│ - status: String                       │
+│ - note: String                         │
+│ - createdAt: LocalDateTime             │
+│ - updatedAt: LocalDateTime             │
+├────────────────────────────────────────┤
+│ + getter/setter（Lombok @Data）         │
+└────────────────────────────────────────┘
+
+アノテーション：
+  @Data
+  @NoArgsConstructor
+  @AllArgsConstructor
+  </pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="fill-block">
+            <div class="fill-label">Inquiry.java <span class="required">必須</span></div>
+            <div class="fill-hint">お問い合わせエンティティのクラス図</div>
+            <div class="fill-content">
+              <div class="ascii-diagram">
+                <pre>
+┌────────────────────────────────────────┐
+│              《Entity》                 │
+│               Inquiry                  │
+├────────────────────────────────────────┤
+│ - id: Long                             │
+│ - name: String                         │
+│ - email: String                        │
+│ - phone: String                        │
+│ - subject: String                      │
+│ - message: String                      │
+│ - status: String                       │
+│ - replySubject: String                 │
+│ - replyMessage: String                 │
+│ - createdAt: LocalDateTime             │
+│ - updatedAt: LocalDateTime             │
+├────────────────────────────────────────┤
+│ + getter/setter（Lombok @Data）         │
+└────────────────────────────────────────┘
+
+アノテーション：
+  @Data
+  @NoArgsConstructor
+  @AllArgsConstructor
+  </pre>
+              </div>
+            </div>
+          </div>
+
+
+        </section>
+
+        <section class="section" id="sec3">
+          <h2 class="section-title"><span class="section-icon">3</span> Repository（リポジトリ）</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">ReservationRepository.java <span class="required">必須</span></div>
+            <div class="fill-hint">予約管理のインターフェース定義</div>
+            <div class="fill-content">
+              <div class="ascii-diagram">
+                <pre>
+┌────────────────────────────────────────────────┐
+│              《Interface》                      │
+│           ReservationRepository                │
+│              @Repository                       │
+├────────────────────────────────────────────────┤
+│ + findAll(): List&lt;Reservation&gt;               │
+│ + findById(id: Long): Reservation              │
+│ + save(reservation: Reservation): void         │
+│ + update(reservation: Reservation): void       │
+│ + delete(id: Long): void                       │
+│ + search(keyword: String): List&lt;Reservation&gt; │
+└────────────────────────────────────────────────┘
+  </pre>
+              </div>
+            </div>
+            <div class="fill-content" style="margin-top: 16px;">
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値</th>
+                    <th>SQL種別</th>
+                    <th>説明</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>findAll</td>
+                    <td>なし</td>
+                    <td>List&lt;Reservation&gt;</td>
+                    <td>SELECT</td>
+                    <td>予約一覧を全件取得</td>
+                  </tr>
+                  <tr>
+                    <td>findById</td>
+                    <td>id: Long</td>
+                    <td>Reservation</td>
+                    <td>SELECT</td>
+                    <td>ID指定で予約情報を取得</td>
+                  </tr>
+                  <tr>
+                    <td>save</td>
+                    <td>reservation: Reservation</td>
+                    <td>void</td>
+                    <td>INSERT</td>
+                    <td>予約情報を新規登録</td>
+                  </tr>
+                  <tr>
+                    <td>update</td>
+                    <td>reservation: Reservation</td>
+                    <td>void</td>
+                    <td>UPDATE</td>
+                    <td>予約情報を更新</td>
+                  </tr>
+                  <tr>
+                    <td>delete</td>
+                    <td>id: Long</td>
+                    <td>void</td>
+                    <td>DELETE</td>
+                    <td>予約情報を削除</td>
+                  </tr>
+                  <tr>
+                    <td>search</td>
+                    <td>keyword: String</td>
+                    <td>List&lt;Reservation&gt;</td>
+                    <td>SELECT</td>
+                    <td>氏名やメールアドレスで検索</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+        <div class="fill-block">
+          <div class="fill-label">InquiryRepository.java <span class="required">必須</span></div>
+          <div class="fill-hint">お問い合わせ管理のインターフェース定義</div>
+          <div class="fill-content">
+            <div class="ascii-diagram">
+              <pre>
+┌────────────────────────────────────────────────┐
+│              《Interface》                      │
+│             InquiryRepository                  │
+│              @Repository                       │
+├────────────────────────────────────────────────┤
+│ + findAll(): List&lt;Inquiry&gt;                   │
+│ + findById(id: Long): Inquiry                  │
+│ + save(inquiry: Inquiry): void                 │
+│ + update(inquiry: Inquiry): void               │
+│ + delete(id: Long): void                       │
+│ + search(keyword: String): List&lt;Inquiry&gt;     │
+└────────────────────────────────────────────────┘
+  </pre>
+            </div>
+          </div>
+          <div class="fill-content" style="margin-top: 16px;">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>メソッド</th>
+                  <th>引数</th>
+                  <th>戻り値</th>
+                  <th>SQL種別</th>
+                  <th>説明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>findAll</td>
+                  <td>なし</td>
+                  <td>List&lt;Inquiry&gt;</td>
+                  <td>SELECT</td>
+                  <td>お問い合わせ一覧を全件取得</td>
+                </tr>
+                <tr>
+                  <td>findById</td>
+                  <td>id: Long</td>
+                  <td>Inquiry</td>
+                  <td>SELECT</td>
+                  <td>ID指定でお問い合わせ情報を取得</td>
+                </tr>
+                <tr>
+                  <td>save</td>
+                  <td>inquiry: Inquiry</td>
+                  <td>void</td>
+                  <td>INSERT</td>
+                  <td>お問い合わせを新規登録</td>
+                </tr>
+                <tr>
+                  <td>update</td>
+                  <td>inquiry: Inquiry</td>
+                  <td>void</td>
+                  <td>UPDATE</td>
+                  <td>お問い合わせ情報を更新</td>
+                </tr>
+                <tr>
+                  <td>delete</td>
+                  <td>id: Long</td>
+                  <td>void</td>
+                  <td>DELETE</td>
+                  <td>お問い合わせ情報を削除</td>
+                </tr>
+                <tr>
+                  <td>search</td>
+                  <td>keyword: String</td>
+                  <td>List&lt;Inquiry&gt;</td>
+                  <td>SELECT</td>
+                  <td>氏名、件名、本文で検索</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+        <section class="section" id="sec4">
+          <h2 class="section-title"><span class="section-icon">4</span> Service（サービス）</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">ReservationService.java <span class="required">必須</span></div>
+            <div class="fill-hint">予約処理のクラス定義</div>
+            <div class="fill-content">
+              <div class="ascii-diagram">
+                <pre>
+┌────────────────────────────────────────────────────┐
+│                   《Service》                       │
+│               ReservationService                   │
+│                   @Service                         │
+├────────────────────────────────────────────────────┤
+│ - reservationRepository: ReservationRepository     │
+├────────────────────────────────────────────────────┤
+│ + findAll(): List&lt;Reservation&gt;                   │
+│ + findById(id: Long): Reservation                  │
+│ + create(form: ReservationForm): void              │
+│ + update(id: Long, form: ReservationForm): void    │
+│ + delete(id: Long): void                           │
+│ + search(keyword: String): List&lt;Reservation&gt;     │
+│ + changeStatus(id: Long, status: String): void     │
+└────────────────────────────────────────────────────┘
+
+依存関係：
+  ReservationService ────▶ ReservationRepository
+  </pre>
+              </div>
+              <p></p>
+              <div class="fill-label">InquiryService.java <span class="required">必須</span></div>
+              <div class="fill-hint">お問い合わせ処理のクラス定義</div>
+              <div class="fill-content">
+                <div class="ascii-diagram">
+                  <pre>
+┌────────────────────────────────────────────────────┐
+│                   《Service》                       │
+│                 InquiryService                     │
+│                   @Service                         │
+├────────────────────────────────────────────────────┤
+│ - inquiryRepository: InquiryRepository             │
+├────────────────────────────────────────────────────┤
+│ + findAll(): List&lt;Inquiry&gt;                       │
+│ + findById(id: Long): Inquiry                      │
+│ + create(form: InquiryForm): void                  │
+│ + update(id: Long, form: InquiryForm): void        │
+│ + delete(id: Long): void                           │
+│ + search(keyword: String): List&lt;Inquiry&gt;         │
+│ + changeStatus(id: Long, status: String): void     │
+└────────────────────────────────────────────────────┘
+
+依存関係：
+  InquiryService ────▶ InquiryRepository
+  </pre>
+                </div>
+              </div>
+            </div>
+        </section>
+
+        <section class="section" id="sec5">
+          <h2 class="section-title"><span class="section-icon">5</span> Controller（コントローラー）</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">ReservationControllerr.java <span class="required">必須</span></div>
+            <div class="fill-hint">予約コントローラーのクラス定義</div>
+            <div class="fill-content">
+              <<div class="ascii-diagram">
+                <pre>
+┌─────────────────────────────────────────────────────────────┐
+│                    《Controller》                            │
+│                 ReservationController                       │
+│                    @Controller                              │
+│              @RequestMapping("/reservations")               │
+├─────────────────────────────────────────────────────────────┤
+│ - reservationService: ReservationService                    │
+├─────────────────────────────────────────────────────────────┤
+│ + list(model: Model): String                                │
+│ + create(form: ReservationForm): String                     │
+│ + update(id: Long, form: ReservationForm): String           │
+│ + delete(id: Long): String                                  │
+│ + search(keyword: String, model: Model): String             │
+│ + changeStatus(id: Long, status: String): String            │
+└─────────────────────────────────────────────────────────────┘
+  </pre>
+            </div>
+          </div>
+          <div class="fill-content" style="margin-top: 16px;">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>メソッド</th>
+                  <th>HTTP</th>
+                  <th>URL</th>
+                  <th>説明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>list</td>
+                  <td>GET</td>
+                  <td>/reservations</td>
+                  <td>予約一覧表示</td>
+                </tr>
+                <tr>
+                  <td>create</td>
+                  <td>POST</td>
+                  <td>/reservations</td>
+                  <td>予約登録処理</td>
+                </tr>
+                <tr>
+                  <td>update</td>
+                  <td>POST</td>
+                  <td>/reservations/{id}</td>
+                  <td>予約更新処理</td>
+                </tr>
+                <tr>
+                  <td>delete</td>
+                  <td>POST</td>
+                  <td>/reservations/{id}/delete</td>
+                  <td>予約削除処理</td>
+                </tr>
+                <tr>
+                  <td>search</td>
+                  <td>GET</td>
+                  <td>/reservations/search</td>
+                  <td>予約検索処理</td>
+                </tr>
+                <tr>
+                  <td>changeStatus</td>
+                  <td>POST</td>
+                  <td>/reservations/{id}/status</td>
+                  <td>予約ステータス更新</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="fill-block">
+              <div class="fill-label">InquiryController.java <span class="required">必須</span></div>
+              <div class="fill-hint">お問い合わせコントローラーのクラス定義</div>
+              <div class="fill-content">
+                <div class="ascii-diagram">
+                  <pre>
+┌─────────────────────────────────────────────────────────────┐
+│                    《Controller》                            │
+│                   InquiryController                         │
+│                    @Controller                              │
+│                @RequestMapping("/inquiries")                │
+├─────────────────────────────────────────────────────────────┤
+│ - inquiryService: InquiryService                            │
+├─────────────────────────────────────────────────────────────┤
+│ + list(model: Model): String                                │
+│ + create(form: InquiryForm): String                         │
+│ + update(id: Long, form: InquiryForm): String               │
+│ + delete(id: Long): String                                  │
+│ + search(keyword: String, model: Model): String             │
+│ + changeStatus(id: Long, status: String): String            │
+└─────────────────────────────────────────────────────────────┘
+  </pre>
+                </div>
+              </div>
+              <div class="fill-content" style="margin-top: 16px;">
+                <table class="doc-table">
+                  <thead>
+                    <tr>
+                      <th>メソッド</th>
+                      <th>HTTP</th>
+                      <th>URL</th>
+                      <th>説明</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>list</td>
+                      <td>GET</td>
+                      <td>/inquiries</td>
+                      <td>お問い合わせ一覧表示</td>
+                    </tr>
+                    <tr>
+                      <td>create</td>
+                      <td>POST</td>
+                      <td>/inquiries</td>
+                      <td>お問い合わせ登録処理</td>
+                    </tr>
+                    <tr>
+                      <td>update</td>
+                      <td>POST</td>
+                      <td>/inquiries/{id}</td>
+                      <td>お問い合わせ更新処理</td>
+                    </tr>
+                    <tr>
+                      <td>delete</td>
+                      <td>POST</td>
+                      <td>/inquiries/{id}/delete</td>
+                      <td>お問い合わせ削除処理</td>
+                    </tr>
+                    <tr>
+                      <td>search</td>
+                      <td>GET</td>
+                      <td>/inquiries/search</td>
+                      <td>お問い合わせ検索処理</td>
+                    </tr>
+                    <tr>
+                      <td>changeStatus</td>
+                      <td>POST</td>
+                      <td>/inquiries/{id}/status</td>
+                      <td>お問い合わせステータス更新</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        </section>
+
+        <section class="section" id="sec6">
+          <h2 class="section-title"><span class="section-icon">6</span> クラス間の依存関係</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">依存関係図 <span class="required">必須</span></div>
+            <div class="fill-hint">Controller → Service → Repository → Entity の依存関係</div>
+            <div class="fill-content">
+              <div class="ascii-diagram">
+                <pre>
+┌──────────────────────────────────────────────────────────────┐
+│                        依存関係図                             │
+├──────────────────────────────────────────────────────────────┤
+│                                                              │
+│   ┌──────────────────────┐   ┌──────────────────────┐        │
+│   │ ReservationController│──▶│ ReservationService   │        │
+│   └──────────────────────┘   └──────────────────────┘        │
+│                │                        │                     │
+│                ▼                        ▼                     │
+│        ┌────────────────┐      ┌──────────────────────┐      │
+│        │ ReservationForm│      │ ReservationRepository│      │
+│        └────────────────┘      └──────────────────────┘      │
+│                                             │                │
+│                                             ▼                │
+│                                     ┌────────────────┐       │
+│                                     │ Reservation    │       │
+│                                     │   (Entity)     │       │
+│                                     └────────────────┘       │
+│                                                              │
+│   ┌──────────────────────┐   ┌──────────────────────┐        │
+│   │   InquiryController  │──▶│   InquiryService     │        │
+│   └──────────────────────┘   └──────────────────────┘        │
+│                │                        │                     │
+│                ▼                        ▼                     │
+│        ┌────────────────┐      ┌──────────────────────┐      │
+│        │  InquiryForm   │      │  InquiryRepository   │      │
+│        └────────────────┘      └──────────────────────┘      │
+│                                             │                │
+│                                             ▼                │
+│                                     ┌────────────────┐       │
+│                                     │   Inquiry      │       │
+│                                     │   (Entity)     │       │
+│                                     └────────────────┘       │
+│                                                              │
+└──────────────────────────────────────────────────────────────┘
+  </pre>
+              </div>
+              <p>
+                本システムでは、予約管理およびお問い合わせ管理を想定したクラス構成を設計した。
+                なお、実際の実装ではバックエンドおよびデータベースは使用しておらず、
+                JavaScriptとlocalStorageを用いたフロントエンド中心の構成としている。
+                そのため、本資料は将来的なSpring Boot実装を想定した設計内容である。
+              </p>
+            </div>
+          </div>
+
+
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+
+</html>

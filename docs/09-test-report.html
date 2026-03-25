@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>テスト報告書 - プロジェクトアーカイブ</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <button class="hamburger" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+
+  <div class="page-wrapper">
+    <aside class="sidebar" data-nav-level="docs"></aside>
+
+    <main class="main-content">
+      <header class="doc-header">
+        <div class="doc-category">DOCUMENT 09</div>
+        <h1 class="doc-title">テスト報告書</h1>
+        <div class="doc-meta">
+          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 作成日：2026-03-24</span>
+          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者：ツツイ</span>
+          <span><span class="material-symbols-outlined icon-sm">push_pin</span> Ver 1.0</span>
+        </div>
+      </header>
+
+      <div class="doc-body">
+
+        <div class="external-link-box">
+          <div class="external-link-box-title">
+            <span class="material-symbols-outlined">link</span>
+            詳細ドキュメント（Google スプレッドシート）
+          </div>
+          <div class="external-link-box-desc">
+            このページは概要のみを記載しています。詳細なテスト報告書は以下のリンクからご確認ください。
+          </div>
+          <div class="external-link-input">
+            <input type="text" placeholder="https://docs.google.com/spreadsheets/d/xxxxx" id="external-link-09">
+            <a href="#" class="link-btn"
+              onclick="window.open(document.getElementById('external-link-09').value || 'https://docs.google.com', '_blank'); return false;">
+              <span class="material-symbols-outlined">open_in_new</span>
+              開く
+            </a>
+          </div>
+        </div>
+
+        <div class="toc">
+          <div class="toc-title">目次</div>
+          <ol class="toc-list">
+            <li><a href="#sec1">テスト計画</a></li>
+            <li><a href="#sec2">テストケース一覧</a></li>
+            <li><a href="#sec3">テスト結果サマリー</a></li>
+            <li><a href="#sec4">バグ一覧</a></li>
+            <li><a href="#sec5">ブラウザ・デバイス対応</a></li>
+          </ol>
+        </div>
+
+        <section class="section" id="sec1">
+          <h2 class="section-title"><span class="section-icon">1</span> テスト計画</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">テスト対象・範囲 <span class="required">必須</span></div>
+            <div class="fill-hint">テストの対象となる機能・画面と、テストの種類</div>
+            <div class="fill-content">
+              <p>本テストでは、inoriサイトの予約機能、お問い合わせ機能、管理画面の動作確認を行いました。</p>
+              <p>主に、画面が正しく表示されるか、入力内容が正しく登録されるか、エラーメッセージが適切に表示されるかを確認しました。</p>
+              <p>また、PCとスマートフォンでレイアウトが崩れないか、ボタンやフォームが問題なく操作できるかも確認しました。</p>
+              <p>正常に動作する場合だけでなく、未入力や不正な入力があった場合の動作もあわせて確認しました。</p>
+            </div>
+          </div>
+
+        </section>
+
+        <section class="section" id="sec2">
+          <h2 class="section-title"><span class="section-icon">2</span> テストケース一覧</h2>
+
+
+          <div class="fill-block">
+            <div class="fill-label">テストケース一覧 <span class="required">必須</span></div>
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>対象機能</th>
+                  <th>テスト種別</th>
+                  <th>テスト内容</th>
+                  <th>期待結果</th>
+                  <th>結果</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="template-row">
+                  <td>TC-001</td>
+                  <td>予約入力</td>
+                  <td>正常系</td>
+                  <td>必須項目をすべて入力して予約を進める</td>
+                  <td>確認画面へ遷移する</td>
+                  <td>OK</td>
+                </tr>
+                <tr class="template-row">
+                  <td>TC-002</td>
+                  <td>予約入力</td>
+                  <td>異常系</td>
+                  <td>氏名を未入力で進む</td>
+                  <td>エラーメッセージが表示される</td>
+                  <td>OK</td>
+                </tr>
+                <tr class="template-row">
+                  <td>TC-003</td>
+                  <td>予約入力</td>
+                  <td>異常系</td>
+                  <td>メールアドレスを未入力で進む</td>
+                  <td>エラーメッセージが表示される</td>
+                  <td>OK</td>
+                </tr>
+                <tr class="template-row">
+                  <td>TC-004</td>
+                  <td>予約入力</td>
+                  <td>異常系</td>
+                  <td>キャンセルポリシーに同意せず進む</td>
+                  <td>次の画面へ進めない</td>
+                  <td>OK</td>
+                </tr>
+                <tr class="template-row">
+                  <td>TC-005</td>
+                  <td>予約確認</td>
+                  <td>正常系</td>
+                  <td>入力内容確認後に予約を確定する</td>
+                  <td>完了画面が表示される</td>
+                  <td>OK</td>
+                </tr>
+                <tr class="template-row">
+                  <td>TC-006</td>
+                  <td>お問い合わせ</td>
+                  <td>正常系</td>
+                  <td>必須項目を入力して送信する</td>
+                  <td>送信完了メッセージが表示される</td>
+                  <td>OK</td>
+                </tr>
+                <tr class="template-row">
+                  <td>TC-007</td>
+                  <td>お問い合わせ</td>
+                  <td>異常系</td>
+                  <td>件名を未入力で送信する</td>
+                  <td>エラーメッセージが表示される</td>
+                  <td>OK</td>
+                </tr>
+                <tr class="template-row">
+                  <td>TC-008</td>
+                  <td>管理画面ログイン</td>
+                  <td>正常系</td>
+                  <td>正しいログイン情報でログインする</td>
+                  <td>管理画面トップへ遷移する</td>
+                  <td>OK</td>
+                </tr>
+                <tr class="template-row">
+                  <td>TC-009</td>
+                  <td>管理画面ログイン</td>
+                  <td>異常系</td>
+                  <td>誤ったログイン情報でログインする</td>
+                  <td>エラーメッセージが表示される</td>
+                  <td>OK</td>
+                </tr>
+                <tr class="template-row">
+                  <td>TC-010</td>
+                  <td>予約管理</td>
+                  <td>正常系</td>
+                  <td>予約一覧を表示する</td>
+                  <td>予約データが一覧で表示される</td>
+                  <td>OK</td>
+                </tr>
+                <tr class="template-row">
+                  <td>TC-011</td>
+                  <td>予約管理</td>
+                  <td>正常系</td>
+                  <td>予約データを編集する</td>
+                  <td>更新内容が保存される</td>
+                  <td>OK</td>
+                </tr>
+                <tr class="template-row">
+                  <td>TC-012</td>
+                  <td>予約管理</td>
+                  <td>正常系</td>
+                  <td>予約データを削除する</td>
+                  <td>一覧から削除される</td>
+                  <td>OK</td>
+                </tr>
+                <tr class="template-row">
+                  <td>TC-013</td>
+                  <td>予約管理</td>
+                  <td>正常系</td>
+                  <td>日付で絞り込み検索する</td>
+                  <td>対象の予約だけ表示される</td>
+                  <td>OK</td>
+                </tr>
+                <tr class="template-row">
+                  <td>TC-014</td>
+                  <td>お問い合わせ管理</td>
+                  <td>正常系</td>
+                  <td>お問い合わせ一覧を表示する</td>
+                  <td>問い合わせデータが一覧で表示される</td>
+                  <td>OK</td>
+                </tr>
+                <tr class="template-row">
+                  <td>TC-015</td>
+                  <td>お問い合わせ管理</td>
+                  <td>正常系</td>
+                  <td>対応状況を変更する</td>
+                  <td>変更内容が保存される</td>
+                  <td>OK</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </section>
+
+        <section class="section" id="sec3">
+          <h2 class="section-title"><span class="section-icon">3</span> テスト結果サマリー</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">テスト結果サマリー <span class="required">必須</span></div>
+            <div class="fill-hint">テスト実施後に集計結果を記入してください</div>
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>項目</th>
+                  <th>件数</th>
+                </tr>
+              </thead>
+              <tbody>
+              <tbody>
+              <tbody>
+                <tr class="template-row">
+                  <td>総テストケース数</td>
+                  <td>15</td>
+                </tr>
+                <tr class="template-row">
+                  <td>OK</td>
+                  <td>15</td>
+                </tr>
+                <tr class="template-row">
+                  <td>NG</td>
+                  <td>0</td>
+                </tr>
+                <tr class="template-row">
+                  <td>未実施</td>
+                  <td>0</td>
+                </tr>
+                <tr class="template-row">
+                  <td>備考</td>
+                  <td>確認した範囲では大きな不具合はなかった</td>
+                </tr>
+              </tbody>
+              </tbody>
+              </tbody>
+            </table>
+
+          </div>
+        </section>
+
+        <section class="section" id="sec4">
+          <h2 class="section-title"><span class="section-icon">4</span> バグ一覧</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">発見されたバグと対応状況 <span class="required">必須</span></div>
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>バグID</th>
+                  <th>発見日</th>
+                  <th>対象機能</th>
+                  <th>内容</th>
+                  <th>重大度</th>
+                  <th>対応状況</th>
+                </tr>
+              </thead>
+              <tbody>
+              <tbody>
+                <tr class="template-row">
+                  <td colspan="6">大きな不具合は確認されなかったため、バグ一覧はなしとする</td>
+                </tr>
+              </tbody>
+              </tbody>
+            </table>
+
+          </div>
+        </section>
+
+        <section class="section" id="sec5">
+          <h2 class="section-title"><span class="section-icon">5</span> ブラウザ・デバイス対応</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">対応状況 <span class="required">必須</span></div>
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>ブラウザ/デバイス</th>
+                  <th>バージョン</th>
+                  <th>表示</th>
+                  <th>機能</th>
+                  <th>備考</th>
+                </tr>
+              </thead>
+              <tbody>
+              <tbody>
+                <tr class="template-row">
+                  <td>Chrome（PC）</td>
+                  <td>最新版</td>
+                  <td>○</td>
+                  <td>○</td>
+                  <td>問題なく動作した</td>
+                </tr>
+                <tr class="template-row">
+                  <td>Firefox（PC）</td>
+                  <td>最新版</td>
+                  <td>○</td>
+                  <td>○</td>
+                  <td>問題なく動作した</td>
+                </tr>
+                <tr class="template-row">
+                  <td>Edge（PC）</td>
+                  <td>最新版</td>
+                  <td>○</td>
+                  <td>○</td>
+                  <td>問題なく動作した</td>
+                </tr>
+                <tr class="template-row">
+                  <td>Chrome（スマートフォン）</td>
+                  <td>最新版</td>
+                  <td>○</td>
+                  <td>○</td>
+                  <td>レスポンシブ表示に対応</td>
+                </tr>
+                <tr class="template-row">
+                  <td>Safari（iPhone）</td>
+                  <td>最新版</td>
+                  <td>○</td>
+                  <td>○</td>
+                  <td>問題なく動作した</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+
+</html>

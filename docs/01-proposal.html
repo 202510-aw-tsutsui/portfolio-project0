@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>企画提案書 - プロジェクトアーカイブ</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <button class="hamburger" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+
+  <div class="page-wrapper">
+    <aside class="sidebar" data-nav-level="docs"></aside>
+
+    <main class="main-content">
+      <header class="doc-header">
+        <div class="doc-category">DOCUMENT 01</div>
+        <h1 class="doc-title">企画提案書</h1>
+        <div class="doc-meta">
+          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 作成日：2026-03-24</span>
+          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者：ツツイ</span>
+          <span><span class="material-symbols-outlined icon-sm">push_pin</span> Ver 1.0</span>
+        </div>
+      </header>
+
+      <div class="doc-body">
+
+        <div class="external-link-box">
+          <div class="external-link-box-title">
+            <span class="material-symbols-outlined">link</span>
+            詳細ドキュメント（Google スプレッドシート）
+          </div>
+          <div class="external-link-box-desc">
+            このページは概要のみを記載しています。詳細な企画提案書は以下のリンクからご確認ください。
+          </div>
+          <div class="external-link-input">
+            <input type="text" placeholder="https://docs.google.com/spreadsheets/d/xxxxx" id="external-link-01">
+            <a href="#" class="link-btn"
+              onclick="window.open(document.getElementById('external-link-01').value || 'https://docs.google.com', '_blank'); return false;">
+              <span class="material-symbols-outlined">open_in_new</span>
+              開く
+            </a>
+          </div>
+        </div>
+
+        <div class="toc">
+          <div class="toc-title">目次</div>
+          <ol class="toc-list">
+            <li><a href="#sec1">プロジェクト概要</a></li>
+            <li><a href="#sec2">背景と課題</a></li>
+            <li><a href="#sec3">提案するソリューション</a></li>
+            <li><a href="#sec4">制作範囲</a></li>
+            <li><a href="#sec5">使用技術</a></li>
+            <li><a href="#sec6">スケジュール</a></li>
+          </ol>
+        </div>
+
+        <section class="section" id="sec1">
+          <h2 class="section-title"><span class="section-icon">1</span> プロジェクト概要</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">サービス名 <span class="required">必須</span></div>
+            <div class="fill-hint">制作するWebサービスの名前</div>
+            <div class="fill-content">
+              <p>香りのワークショップ「inori」</p>
+            </div>
+          </div>
+          <div class="fill-block">
+            <div class="fill-label">コンセプト <span class="required">必須</span></div>
+            <div class="fill-hint">サービスを一言で表す説明（キャッチコピー＋1〜2文の説明）</div>
+            <div class="fill-content">
+              <p>作ることを楽しみ、人とつながる交流の場</p>
+              <p>日本のものづくりを活かした香り製品を中心に、作り手と出会い、つながれる交流の場を目指す。</p>
+              <p>商品だけでなく、その背景や作り手の想いまで感じられる、五感に響く空間を提案する。</p>
+              <p>使い手と作り手のあいだに、新たなコミュニケーションが生まれるきっかけをつくる。</p>
+            </div>
+          </div>
+          <div class="fill-block">
+            <div class="fill-label">ターゲットユーザー <span class="required">必須</span></div>
+            <div class="fill-hint">このサービスを使う主なユーザー像（概要レベル）</div>
+            <div class="fill-content">
+              <p>20代〜40代で、日本のものづくりや文化、人との交流に興味があり、新しい体験を楽しみたい人。</p>
+              <p>また、国内外の観光客で、地域ならではの特別な体験や思い出に残るお土産を求めている人。</p>
+            </div>
+
+        </section>
+
+        <section class="section" id="sec2">
+          <h2 class="section-title"><span class="section-icon">2</span> 背景と課題</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">市場の現状 <span class="required">必須</span></div>
+            <div class="fill-hint">このサービスが存在する市場の現状と課題</div>
+            <div class="fill-content">
+              <p>（市場の現状）</p>
+              <p>日本の香り・フレグランス市場は、セルフケア意識の高まりを背景に拡大傾向にあり、</p>
+              <p>天然・オーガニック志向やアロマなど体験価値への需要も増加している。</p>
+              <p>一方で、ワークショップなどの体験型サービスはまだ成熟度が低く、</p>
+              <p>商品販売と体験をつなぐWeb導線設計が重要な課題となっている。</p>
+              <p>（課題）</p>
+              <p>ワークショップ予約数の低迷</p>
+              <p>Web導線の欠如</p>
+            </div>
+          </div>
+          <div class="fill-block">
+            <div class="fill-label">解決すべき課題 <span class="required">必須</span></div>
+            <div class="fill-hint">本プロジェクトで解決を目指す具体的な課題（3つ程度）</div>
+            <div class="fill-content">
+              <p>①予約導線の最適化不足（予約サイト見直し）</p>
+              <p>②外国人観光客への情報不足（英語対応）</p>
+              <p>③「ワークショップならではの価値」が十分に伝わっていない</p>
+            </div>
+          </div>
+
+        </section>
+
+        <section class="section" id="sec3">
+          <h2 class="section-title"><span class="section-icon">3</span> 提案するソリューション</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">サービスの特長 <span class="required">必須</span></div>
+            <div class="fill-hint">競合と差別化するサービスの特長を3つ</div>
+            <div class="fill-content">
+              <p>①「作り手と直接つながる」香り体験</p>
+              <p>②浅草という場所性を活かした“ここでしか作れない香り”</p>
+              <p>③スムーズに予約できる多言語対応体験設計</p>
+            </div>
+          </div>
+
+        </section>
+
+        <section class="section" id="sec4">
+          <h2 class="section-title"><span class="section-icon">4</span> 制作範囲</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">Webサイト（フロントエンド）の範囲 <span class="required">必須</span></div>
+            <div class="fill-hint">制作するWebサイトのページ一覧と概要</div>
+            <div class="fill-content">
+              <style>
+                p {
+                  font-family: monospace;
+                  white-space: pre;
+                  line-height: 1.6;
+                }
+              </style>
+              </head>
+
+              <body>
+
+                <pre class="site-map">
+    トップページ
+    ├─ ワークショップ
+    │  ├─ 体験の流れ
+    │  ├─ 料金
+    │  ├─ 日程
+    │  ├─ 写真
+    │  ├─ レビュー
+    │  └─ 予約
+    │
+    ├─ 予約
+    │  ├─ 予約フォーム
+    │  ├─ 支払
+    │  └─ 予約完了
+    │
+    ├─ アクセス
+    │  ├─ Google Map
+    │  └─ 周辺観光スポット
+    │
+    ├─ よくある質問
+    ├─ お問い合わせ
+    └─ inoriについて
+        ├─ コウサクってなあに？
+        └─ コウサクの香り
+</pre>
+
+
+        </section>
+
+        <section class="section" id="sec5">
+          <h2 class="section-title"><span class="section-icon">5</span>使用技術</h2>
+
+          <p style="font-size:13px;color:var(--text-light);margin-bottom:8px;"></p>
+          <table class="doc-table">
+            <thead>
+              <tr>
+                <th>区分</th>
+                <th>技術</th>
+                <th>用途</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tbody>
+              <tr class="template-row">
+                <td>フロントエンド</td>
+                <td>HTML / CSS / JavaScript</td>
+                <td>Webサイトの画面作成、レイアウト調整、動きの実装</td>
+              </tr>
+              <tr class="template-row">
+                <td>デザイン</td>
+                <td>Figma</td>
+                <td>ワイヤーフレーム、画面設計、デザイン作成</td>
+              </tr>
+              <tr class="template-row">
+                <td>バージョン管理</td>
+                <td>Git / GitHub</td>
+                <td>ソースコード管理、公開</td>
+              </tr>
+              <tr class="template-row">
+                <td>AI活用</td>
+                <td>ChatGPT </td>
+                <td>文章作成、構成整理、アイデア出し</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </section>
+
+        <section class="section" id="sec6">
+          <h2 class="section-title"><span class="section-icon">6</span> スケジュール</h2>
+
+          <table class="doc-table">
+            <thead>
+              <tr>
+                <th>期間</th>
+                <th>フェーズ</th>
+                <th>内容</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tbody>
+              <tr class="template-row">
+                <td>week1</td>
+                <td>企画</td>
+                <td>サービス内容の整理、ターゲット設定、コンセプト設計</td>
+              </tr>
+              <tr class="template-row">
+                <td>week2</td>
+                <td>設計</td>
+                <td>サイトマップ作成、ページ構成、画面遷移の検討</td>
+              </tr>
+              <tr class="template-row">
+                <td>week3-4</td>
+                <td>デザイン</td>
+                <td>ワイヤーフレーム作成、デザイン作成（Figma）</td>
+              </tr>
+              <tr class="template-row">
+                <td>week4-5</td>
+                <td>フロント実装</td>
+                <td>HTML・CSSを用いたページ作成、レイアウト実装</td>
+              </tr>
+              <tr class="template-row">
+                <td>week4-5</td>
+                <td>機能実装</td>
+                <td>予約フォーム、画面遷移、簡単な動きの実装</td>
+              </tr>
+              <tr class="template-row">
+                <td>week4-5</td>
+                <td>管理画面作成</td>
+                <td>予約一覧やお問い合わせ一覧などの管理画面UI作成</td>
+              </tr>
+              <tr class="template-row">
+                <td>week6</td>
+                <td>テスト・修正</td>
+                <td>表示確認、動作確認、レイアウト調整</td>
+              </tr>
+              <tr class="template-row">
+                <td>week7</td>
+                <td>調整・資料作成</td>
+                <td>デザイン調整、仕様書・設計書・テスト報告書の作成、最終確認</td>
+              </tr>
+
+            </tbody>
+          </table>
+
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+
+</html>

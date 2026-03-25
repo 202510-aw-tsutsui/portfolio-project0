@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>メソッド一覧 - プロジェクトアーカイブ</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <button class="hamburger" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+
+  <div class="page-wrapper">
+    <aside class="sidebar" data-nav-level="design"></aside>
+
+    <main class="main-content">
+      <header class="doc-header">
+        <div class="doc-category">DESIGN DOCUMENT</div>
+        <h1 class="doc-title">メソッド一覧</h1>
+        <div class="doc-meta">
+          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 作成日：2026-03-24</span>
+          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者：ツツイ</span>
+          <span><span class="material-symbols-outlined icon-sm">push_pin</span> Ver 1.0</span>
+        </div>
+      </header>
+
+      <div class="doc-body">
+
+        <div class="toc">
+          <div class="toc-title">目次</div>
+          <ol class="toc-list">
+            <li><a href="#sec1">Controller メソッド一覧</a></li>
+            <li><a href="#sec2">Service メソッド一覧</a></li>
+            <li><a href="#sec3">Repository メソッド一覧</a></li>
+            <li><a href="#sec4">共通処理・ユーティリティ</a></li>
+          </ol>
+        </div>
+
+        <section class="section" id="sec1">
+          <h2 class="section-title"><span class="section-icon">1</span> Controller メソッド一覧</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">ReservationController <span class="required">必須</span></div>
+            <div class="fill-hint">予約管理コントローラーの全メソッド</div>
+            <div class="fill-content">
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>メソッド名</th>
+                    <th>HTTP</th>
+                    <th>URL</th>
+                    <th>引数</th>
+                    <th>戻り値</th>
+                    <th>処理概要</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>list</td>
+                    <td>GET</td>
+                    <td>/reservations</td>
+                    <td>Model model</td>
+                    <td>String</td>
+                    <td>予約一覧を取得してModelに追加し、予約管理画面を返却</td>
+                  </tr>
+                  <tr>
+                    <td>create</td>
+                    <td>POST</td>
+                    <td>/reservations</td>
+                    <td>@Valid ReservationForm form, BindingResult result</td>
+                    <td>String</td>
+                    <td>入力チェック後、予約情報を登録して一覧画面へリダイレクト</td>
+                  </tr>
+                  <tr>
+                    <td>update</td>
+                    <td>POST</td>
+                    <td>/reservations/{id}</td>
+                    <td>@PathVariable Long id, @Valid ReservationForm form, BindingResult result</td>
+                    <td>String</td>
+                    <td>指定IDの予約情報を更新して一覧画面へリダイレクト</td>
+                  </tr>
+                  <tr>
+                    <td>delete</td>
+                    <td>POST</td>
+                    <td>/reservations/{id}/delete</td>
+                    <td>@PathVariable Long id</td>
+                    <td>String</td>
+                    <td>指定IDの予約情報を削除して一覧画面へリダイレクト</td>
+                  </tr>
+                  <tr>
+                    <td>search</td>
+                    <td>GET</td>
+                    <td>/reservations/search</td>
+                    <td>String keyword, Model model</td>
+                    <td>String</td>
+                    <td>キーワード条件で予約情報を検索して結果を画面表示する</td>
+                  </tr>
+                  <tr>
+                    <td>changeStatus</td>
+                    <td>POST</td>
+                    <td>/reservations/{id}/status</td>
+                    <td>@PathVariable Long id, String status</td>
+                    <td>String</td>
+                    <td>指定IDの予約ステータスを変更して一覧画面へリダイレクト</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="fill-block">
+            <div class="fill-label">InquiryController <span class="optional">任意</span></div>
+            <div class="fill-hint">お問い合わせ管理コントローラーの全メソッド</div>
+            <div class="fill-content">
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>メソッド名</th>
+                    <th>HTTP</th>
+                    <th>URL</th>
+                    <th>引数</th>
+                    <th>戻り値</th>
+                    <th>処理概要</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>list</td>
+                    <td>GET</td>
+                    <td>/inquiries</td>
+                    <td>Model model</td>
+                    <td>String</td>
+                    <td>お問い合わせ一覧を取得してModelに追加し、管理画面を返却</td>
+                  </tr>
+                  <tr>
+                    <td>create</td>
+                    <td>POST</td>
+                    <td>/inquiries</td>
+                    <td>@Valid InquiryForm form, BindingResult result</td>
+                    <td>String</td>
+                    <td>入力チェック後、お問い合わせ情報を登録して一覧画面へリダイレクト</td>
+                  </tr>
+                  <tr>
+                    <td>update</td>
+                    <td>POST</td>
+                    <td>/inquiries/{id}</td>
+                    <td>@PathVariable Long id, @Valid InquiryForm form, BindingResult result</td>
+                    <td>String</td>
+                    <td>指定IDのお問い合わせ情報を更新して一覧画面へリダイレクト</td>
+                  </tr>
+                  <tr>
+                    <td>delete</td>
+                    <td>POST</td>
+                    <td>/inquiries/{id}/delete</td>
+                    <td>@PathVariable Long id</td>
+                    <td>String</td>
+                    <td>指定IDのお問い合わせ情報を削除して一覧画面へリダイレクト</td>
+                  </tr>
+                  <tr>
+                    <td>search</td>
+                    <td>GET</td>
+                    <td>/inquiries/search</td>
+                    <td>String keyword, Model model</td>
+                    <td>String</td>
+                    <td>キーワード条件でお問い合わせ情報を検索して結果を画面表示する</td>
+                  </tr>
+                  <tr>
+                    <td>changeStatus</td>
+                    <td>POST</td>
+                    <td>/inquiries/{id}/status</td>
+                    <td>@PathVariable Long id, String status</td>
+                    <td>String</td>
+                    <td>指定IDのお問い合わせステータスを変更して一覧画面へリダイレクト</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="sec2">
+          <h2 class="section-title"><span class="section-icon">2</span> Service メソッド一覧</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">ReservationService <span class="required">必須</span></div>
+            <div class="fill-hint">予約サービスの全メソッド</div>
+            <div class="fill-content">
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>メソッド名</th>
+                    <th>引数</th>
+                    <th>戻り値</th>
+                    <th>処理概要</th>
+                    <th>呼び出すRepository</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>findAll</td>
+                    <td>なし</td>
+                    <td>List&lt;Reservation&gt;</td>
+                    <td>全予約情報を取得する</td>
+                    <td>reservationRepository.findAll()</td>
+                  </tr>
+                  <tr>
+                    <td>findById</td>
+                    <td>Long id</td>
+                    <td>Reservation</td>
+                    <td>ID指定で予約情報を取得する</td>
+                    <td>reservationRepository.findById(id)</td>
+                  </tr>
+                  <tr>
+                    <td>create</td>
+                    <td>ReservationForm form</td>
+                    <td>void</td>
+                    <td>フォーム入力値をEntityへ変換して予約情報を登録する</td>
+                    <td>reservationRepository.save(reservation)</td>
+                  </tr>
+                  <tr>
+                    <td>update</td>
+                    <td>Long id, ReservationForm form</td>
+                    <td>void</td>
+                    <td>既存の予約情報を更新する</td>
+                    <td>reservationRepository.update(reservation)</td>
+                  </tr>
+                  <tr>
+                    <td>delete</td>
+                    <td>Long id</td>
+                    <td>void</td>
+                    <td>指定IDの予約情報を削除する</td>
+                    <td>reservationRepository.delete(id)</td>
+                  </tr>
+                  <tr>
+                    <td>search</td>
+                    <td>String keyword</td>
+                    <td>List&lt;Reservation&gt;</td>
+                    <td>氏名やメールアドレスで予約情報を検索する</td>
+                    <td>reservationRepository.search(keyword)</td>
+                  </tr>
+                  <tr>
+                    <td>changeStatus</td>
+                    <td>Long id, String status</td>
+                    <td>void</td>
+                    <td>予約のステータスを変更する</td>
+                    <td>reservationRepository.update(reservation)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="fill-block">
+            <div class="fill-label">InquiryService <span class="optional">任意</span></div>
+            <div class="fill-hint">お問い合わせサービスの全メソッド</div>
+            <div class="fill-content">
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>メソッド名</th>
+                    <th>引数</th>
+                    <th>戻り値</th>
+                    <th>処理概要</th>
+                    <th>呼び出すRepository</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>findAll</td>
+                    <td>なし</td>
+                    <td>List&lt;Inquiry&gt;</td>
+                    <td>全お問い合わせ情報を取得する</td>
+                    <td>inquiryRepository.findAll()</td>
+                  </tr>
+                  <tr>
+                    <td>findById</td>
+                    <td>Long id</td>
+                    <td>Inquiry</td>
+                    <td>ID指定でお問い合わせ情報を取得する</td>
+                    <td>inquiryRepository.findById(id)</td>
+                  </tr>
+                  <tr>
+                    <td>create</td>
+                    <td>InquiryForm form</td>
+                    <td>void</td>
+                    <td>フォーム入力値をEntityへ変換してお問い合わせ情報を登録する</td>
+                    <td>inquiryRepository.save(inquiry)</td>
+                  </tr>
+                  <tr>
+                    <td>update</td>
+                    <td>Long id, InquiryForm form</td>
+                    <td>void</td>
+                    <td>既存のお問い合わせ情報を更新する</td>
+                    <td>inquiryRepository.update(inquiry)</td>
+                  </tr>
+                  <tr>
+                    <td>delete</td>
+                    <td>Long id</td>
+                    <td>void</td>
+                    <td>指定IDのお問い合わせ情報を削除する</td>
+                    <td>inquiryRepository.delete(id)</td>
+                  </tr>
+                  <tr>
+                    <td>search</td>
+                    <td>String keyword</td>
+                    <td>List&lt;Inquiry&gt;</td>
+                    <td>氏名・件名・本文でお問い合わせ情報を検索する</td>
+                    <td>inquiryRepository.search(keyword)</td>
+                  </tr>
+                  <tr>
+                    <td>changeStatus</td>
+                    <td>Long id, String status</td>
+                    <td>void</td>
+                    <td>お問い合わせの対応ステータスを変更する</td>
+                    <td>inquiryRepository.update(inquiry)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="sec3">
+          <h2 class="section-title"><span class="section-icon">3</span> Repository メソッド一覧</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">ReservationRepository <span class="required">必須</span></div>
+            <div class="fill-hint">予約リポジトリの全メソッド</div>
+            <div class="fill-content">
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>メソッド名</th>
+                    <th>引数</th>
+                    <th>戻り値</th>
+                    <th>SQL種別</th>
+                    <th>備考</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>findAll</td>
+                    <td>なし</td>
+                    <td>List&lt;Reservation&gt;</td>
+                    <td>SELECT</td>
+                    <td>予約一覧を全件取得する</td>
+                  </tr>
+                  <tr>
+                    <td>findById</td>
+                    <td>Long id</td>
+                    <td>Reservation</td>
+                    <td>SELECT</td>
+                    <td>主キー検索</td>
+                  </tr>
+                  <tr>
+                    <td>save</td>
+                    <td>Reservation reservation</td>
+                    <td>void</td>
+                    <td>INSERT</td>
+                    <td>新規予約登録</td>
+                  </tr>
+                  <tr>
+                    <td>update</td>
+                    <td>Reservation reservation</td>
+                    <td>void</td>
+                    <td>UPDATE</td>
+                    <td>予約情報更新、updated_atも更新</td>
+                  </tr>
+                  <tr>
+                    <td>delete</td>
+                    <td>Long id</td>
+                    <td>void</td>
+                    <td>DELETE</td>
+                    <td>予約情報を削除</td>
+                  </tr>
+                  <tr>
+                    <td>search</td>
+                    <td>String keyword</td>
+                    <td>List&lt;Reservation&gt;</td>
+                    <td>SELECT</td>
+                    <td>氏名・メールアドレス・電話番号で検索</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="fill-block">
+            <div class="fill-label">InquiryRepository <span class="optional">任意</span></div>
+            <div class="fill-hint">お問い合わせリポジトリの全メソッド</div>
+            <div class="fill-content">
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>メソッド名</th>
+                    <th>引数</th>
+                    <th>戻り値</th>
+                    <th>SQL種別</th>
+                    <th>備考</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>findAll</td>
+                    <td>なし</td>
+                    <td>List&lt;Inquiry&gt;</td>
+                    <td>SELECT</td>
+                    <td>お問い合わせ一覧を全件取得する</td>
+                  </tr>
+                  <tr>
+                    <td>findById</td>
+                    <td>Long id</td>
+                    <td>Inquiry</td>
+                    <td>SELECT</td>
+                    <td>主キー検索</td>
+                  </tr>
+                  <tr>
+                    <td>save</td>
+                    <td>Inquiry inquiry</td>
+                    <td>void</td>
+                    <td>INSERT</td>
+                    <td>お問い合わせ新規登録</td>
+                  </tr>
+                  <tr>
+                    <td>update</td>
+                    <td>Inquiry inquiry</td>
+                    <td>void</td>
+                    <td>UPDATE</td>
+                    <td>お問い合わせ情報更新、ステータス更新を含む</td>
+                  </tr>
+                  <tr>
+                    <td>delete</td>
+                    <td>Long id</td>
+                    <td>void</td>
+                    <td>DELETE</td>
+                    <td>お問い合わせ情報を削除</td>
+                  </tr>
+                  <tr>
+                    <td>search</td>
+                    <td>String keyword</td>
+                    <td>List&lt;Inquiry&gt;</td>
+                    <td>SELECT</td>
+                    <td>氏名・件名・本文で検索</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="sec4">
+          <h2 class="section-title"><span class="section-icon">4</span> 共通処理・ユーティリティ</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">日付変換・フォーマット <span class="optional">任意</span></div>
+            <div class="fill-hint">日付関連のユーティリティメソッド</div>
+            <div class="fill-content">
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>処理</th>
+                    <th>使用クラス/メソッド</th>
+                    <th>変換元</th>
+                    <th>変換先</th>
+                    <th>用途</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>文字列→日付</td>
+                    <td>LocalDate.parse()</td>
+                    <td>String "2026-03-24"</td>
+                    <td>LocalDate</td>
+                    <td>予約日入力値の変換</td>
+                  </tr>
+                  <tr>
+                    <td>日付→文字列</td>
+                    <td>DateTimeFormatter</td>
+                    <td>LocalDate</td>
+                    <td>String "2026/03/24"</td>
+                    <td>画面表示用の日付整形</td>
+                  </tr>
+                  <tr>
+                    <td>現在日時取得</td>
+                    <td>LocalDateTime.now()</td>
+                    <td>-</td>
+                    <td>LocalDateTime</td>
+                    <td>作成日時・更新日時の設定</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="fill-block">
+            <div class="fill-label">バリデーション関連 <span class="optional">任意</span></div>
+            <div class="fill-hint">Bean Validationアノテーション一覧</div>
+            <div class="fill-content">
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>アノテーション</th>
+                    <th>対象フィールド</th>
+                    <th>検証内容</th>
+                    <th>エラーメッセージ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>@NotBlank</td>
+                    <td>name</td>
+                    <td>空文字・null禁止</td>
+                    <td>氏名は必須です</td>
+                  </tr>
+                  <tr>
+                    <td>@Email</td>
+                    <td>email</td>
+                    <td>メールアドレス形式</td>
+                    <td>正しいメールアドレスを入力してください</td>
+                  </tr>
+                  <tr>
+                    <td>@NotNull</td>
+                    <td>reservationDate</td>
+                    <td>null禁止</td>
+                    <td>予約日を選択してください</td>
+                  </tr>
+                  <tr>
+                    <td>@NotBlank</td>
+                    <td>reservationTime</td>
+                    <td>空文字・null禁止</td>
+                    <td>予約時間を選択してください</td>
+                  </tr>
+                  <tr>
+                    <td>@Min(1)</td>
+                    <td>peopleCount</td>
+                    <td>1以上の数値</td>
+                    <td>人数は1名以上で入力してください</td>
+                  </tr>
+                  <tr>
+                    <td>@NotBlank</td>
+                    <td>message</td>
+                    <td>空文字・null禁止</td>
+                    <td>お問い合わせ内容は必須です</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+
+</html>
